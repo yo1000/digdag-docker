@@ -1,0 +1,22 @@
+services:
+  digdag_server:
+    build:
+      context: ./digdag
+      args:
+        DIGDAG_VERSION: 0.10.5
+    ports:
+      - "65432:65432"
+    depends_on:
+      - postgres
+    volumes:
+      - ./projects:/var/digdag/projects
+    environment:
+      DATABASE_HOST: digdag-db
+
+  digdag-db:
+    image: postgres:11.1
+    environment:
+      POSTGRES_DB: digdag
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
