@@ -7,7 +7,7 @@ services:
     ports:
       - "65432:65432"
     depends_on:
-      - postgres
+      - digdag-db
     volumes:
       - ./projects:/var/digdag/projects
     environment:
